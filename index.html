@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html> 
+  <head>
+    <title>Processing.JS inside Webpages: Template</title> 
+  </head>
+  <body>
+	<!--This draws the canvas on the webpage -->
+    <canvas id="mycanvas"></canvas> 
+  </body>
+ 
+  <!-- Include the processing.js library -->
+  <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
+  <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+  <script>
+  var wIdth  = window.innerWidth || document.documentElement.clientWidth || 
+document.body.clientWidth;
+var  hEight = window.innerHeight|| document.documentElement.clientHeight|| 
+document.body.clientHeight;
+  var programCode = function(processingInstance) {
+    with (processingInstance) {
+      size(wIdth, hEight); 
+      frameRate(30);
+        
+      String.prototype.anyAtAll = function(arr) {
+    for (var i = 0; i < arr.length; i++) {
+        if (this.includes(arr[i])) {return true;}
+    }
+    return false;
+};
+function Typer(x, y, s, c, words) {
+    this.go = true;
+    this.highlight = true;
+    this.x = x;
+    this.y = y;
+    this.size = s;
+    this.coloring = c;
+    this.lettering = words || '';
+    this.start = words || '';
+    this.welcome = '> ';
+    this.draw = function() {
+        textFont(createFont("monospace", this.size));
+        fill(this.coloring);
+        text(this.welcome + this.lettering, this.x, this.y);
+        if (this.highlight) {
+            noFill();
+            stroke(this.coloring);
+            rect(this.x + (this.lettering.length+this.welcome.length) * (16.5/30*this.size), this.y - this.size * (26/30), this.size/2, this.size);
+        }
+        if (frameCount % 30 === 0) {
+            if (this.highlight) {this.highlight = false;} else {this.highlight = true;}
+        }
+    };
+    this.push = function(a) {
+        if (this.x + (this.lettering.length+this.welcome.length) * (18/30*this.size) < width-20) {this.lettering += a;}
+    };
+    this.del = function() {
+        this.lettering = this.lettering.slice(0, this.lettering.length - 1);
+    };
+    this.clear = function() {this.lettering = this.start;};
+    this.submit = function() {return this.lettering;};
+}
+var files = {
+    'name': 'home',
+    sal: {
+        'name': 'sal',
+        'type': 'file',
+        password: 'KHAN',
+        'desktop': {
+            name: 'desktop',
+            type: 'file',
+            recylceBin: {
+                name: 'recylceBin',
+                type: 'deleted programs'
+            },
+            google: {
+                name: 'Google',
+                type: 'program',
+                dateInstalled: '5/25/2000'
+            },
+            bing: {
+                name: 'Bing',
+                type: 'program',
+                dateInstalled: '5/25/2000'
+            }
+        },
+        'downloads': {
+            name: 'downloads',
+            type: 'file',
+            cuteCatSounds: {
+                name: 'Cute Cat Sounds',
+                type: 'audio',
+                dateDownLoaded: '6/03/2000'
+            },
+            cuteDogImage: {
+                name: 'Cute Dog Image',
+                type: 'image',
+                dateDownLoaded: '7/27/2000'
+            },
+            letterFromOhNoes: {
+                name: 'Letter From Oh Noes',
+                type: 'text',
+                content: 'Hey Sal, I heard about the position open at khanacademy. I feel I am perfectly capable to handle the bugs. Plus I love programming so much, I have a semicolon on my forehead!',
+                dateDownLoaded: '8/20/2001'
+            },
+        },
+    },
+    pamela: {
+        'name': 'pamela',
+        'type': 'file',
+        password: 'var',
+        desktop: {
+            name: 'desktop',
+            type: 'file',
+            recylceBin: {
+                name: 'recylceBin',
+                type: 'deleted programs'
+            },
+            google: {
+                name: 'Google',
+                type: 'program',
+                dateInstalled: '5/25/2000'
+            },
+            firefox: {
+                name: 'Firefox',
+                type: 'program',
+                dateInstalled: '5/25/2000'
+            },
+            khanCode: {
+                name: 'Khan Code Files',
+                type: 'file',
+                html: {
+                    name: 'HTML Khan Code',
+                    type: '.html',
+                },
+                js: {
+                    name: 'Javacript Khan Code',
+                    type: '.js',
+                },
+                dateInstalled: '5/26/2000'
+            }
+        },
+        downloads: {
+            name: 'downloads',
+            type: 'file',
+            codeForOhNoes: {
+                name: 'Code For Oh Noes',
+                type: '.js',
+                dateDownLoaded: '7/06/2007'
+            },
+            tutorialPics: {
+                name: 'Tutorial Pictures',
+                type: 'image',
+                dateDownLoaded: '10/14/2007'
+            },
+            coolProjectCode: {
+                name: 'Cool Project Code',
+                type: '.js',
+                dateDownLoaded: '12/24/2010'
+            },
+            letterFromSal: {
+                name: 'Letter From Sal',
+                type: 'text',
+                content: 'Hey Pamela, I heard our computer system was being comprimised. Please lock down the files and change the passwords. Make sure Winston\'s account is well secure.',
+                dateDownLoaded: '6/03/2011'
+            }
+        },
+    }
+    
+};
+
+var comPath = [files];
+var usernameDone = false;
+var passwordDone = false;
+var t = new Typer(20, height-20, 15, color(0, 255, 0), '');
+var past = ['Welcome to S.H.A.E.L.Y.', 'Otherwise known as The', '', 'S py\'s', 'H andy', 'A wesome', 'E lectronic', 'L ibrary made by', 'Y our friend', '', 'If you\'re a spy then you know what to do.', '', '', ''];
+var commands = ['library', 'Lilian Soren', 'Myles Bartelome', 'Carson Ouckama', 'Shaely Vollmer', 'Hali Bell', 'Elise Pruett', 'Hannah Warth'];
+var names = ['Lilian Soren', 'Myles Bartelome', 'Carson Ouckama', 'Shaely Vollmer', 'Hali Bell', 'Elise Pruett', 'Hannah Warth'];
+
+function printPast(text) {
+    var newtext = text.split('|');
+    for (var i = 0; i < newtext.length; i++) {
+        past.push(newtext[i]);
+    }
+    past.push('');
+}
+var cFunc = [function() {
+    for (var i = 0; i < names.length; i++) {
+        past.push(names[i]);
+    }
+    past.push('');
+},
+function() {
+    printPast('---------------------||Lilian Soren:||Plays the Violon.||Birthday: September 25th.|Has 3 siblings: Conner, Paxton, and Makenzie.||---------------------');    
+},
+function() {
+    printPast('---------------------||Myles Bartelome:||Plays the Clarinet and Saxaphone.||Birthday: May 28th|Is dating Trinity.|Has 1 sibling: Gavin.|Notes: Is crazy and insane, may randomly hurt someone||---------------------'); 
+},
+function() {
+    printPast('---------------------||Carson Ouckama:||Plays the Saxaphone and Guitar||Birthday: July 6th|Has 4 siblings: Desmond, Breann, Ayden, Ellzah|Notes: Is super hot and amazing and smart.||---------------------'); 
+}, 
+function() {
+    printPast('---------------------||Shaely Vollmer:||Plays the Violon||Birthday: March 16th|Has ALOT of siblings: No idea|Notes: Is smart and funny.||---------------------'); 
+}, 
+function() {
+    printPast('---------------------||Hali Bell:||Plays the voice machine||Birthday: April 4th|Has 4 siblings: Colby, Liam, someone else and someone else|Notes: Likes Hunter????||---------------------'); 
+}, 
+function() {
+    printPast('---------------------||Elise Pruett:||Plays the bongos||Has 2 siblings: No idea||---------------------'); 
+}, 
+function() {
+    printPast('---------------------||Hannah Warth:||Plays the Violon||Has 1 sibling: Kaysia|Notes: Her mom doesn\'t like to wave to people. She has her own spot next to the lunch table.||---------------------'); 
+}];
+
+
+var okay = 'qwertyuiop[]\\asdfghjkl:;"\'zxcvbnm,./1234567890-=!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKLZXCVBNM<>? '.split('');
+keyPressed = function() {
+    if (okay.includes(key.toString())) {t.push(key.toString());}
+    if (keyCode === 8) {t.del();}
+    if (keyCode === 10 && t.lettering !== '' && usernameDone && passwordDone) {
+        if (commands.includes(t.submit())) {
+            cFunc[commands.indexOf(t.submit())]();
+        } else {
+            past.push('  Invalid name.');
+            past.push('');
+        }
+        
+        t.clear();
+    } else if (keyCode === 10 && t.lettering !== '' && usernameDone === false) {
+        if (t.submit() === "shayshayheyhey") {
+            past.push('correct username');
+            past.push('');
+            usernameDone = true;
+            t.welcome = 'password > ';
+        } else {
+            past.push("invalid username");    
+        }
+        
+        t.clear();
+    } else if (keyCode === 10 && t.lettering !== '' && passwordDone === false) {
+        if (t.submit() === "my handwriting is better than carson\'s") {
+            past.push('correct password');
+            past.push('');
+            past.push('You may now type anyone\'s name from your close friends');
+            past.push('to veiw their info');
+            past.push('');
+            past.push('type \'library\' to veiw available names');
+            past.push('');
+            passwordDone = true;
+            t.welcome = '> ';
+        } else {
+            past.push("invalid username");    
+        }
+        
+        t.clear();
+    }
+};
+
+draw = function() {
+    background(0);
+    
+    if (usernameDone === false) {
+        t.welcome = 'username > ';
+    }
+    
+    for (var i = past.length - 1; i >= 0; i--) {
+        textFont(createFont("monospace", t.size));
+        text(past[i], 20, height-20 - (past.length - i)*t.size- 1);
+    } 
+    t.draw();
+};
+    }};
+
+  // Get the canvas that ProcessingJS will use
+  var canvas = document.getElementById("mycanvas"); 
+  // Pass the function to ProcessingJS constructor
+  var processingInstance = new Processing(canvas, programCode); 
+  </script>
+</html>
