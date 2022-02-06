@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html> 
   <head>
-    <title>Processing.JS inside Webpages: Template</title> 
+    <title>Happy Birthday To You</title> 
   </head>
   <body>
 	<!--This draws the canvas on the webpage -->
@@ -215,7 +215,13 @@ function() {
 var okay = 'qwertyuiop[]\\asdfghjkl:;"\'zxcvbnm,./1234567890-=!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKLZXCVBNM<>? '.split('');
 keyPressed = function() {
     if (okay.includes(key.toString())) {t.push(key.toString());}
-    if (keyCode === 8) {t.del();}
+    if (keyCode === 8) {
+	var newString = '';
+    	for (var i = 0; i < t.lettering.length - 1; i++) {
+	    newString+=t.lettering[i];
+	}
+	t.lettering = newString;
+    }
     if (keyCode === 10 && t.lettering !== '' && usernameDone && passwordDone) {
         if (commands.includes(t.submit())) {
             cFunc[commands.indexOf(t.submit())]();
@@ -248,7 +254,7 @@ keyPressed = function() {
             passwordDone = true;
             t.welcome = '> ';
         } else {
-            past.push("invalid username");    
+            past.push("invalid password");    
         }
         
         t.clear();
