@@ -2,9 +2,11 @@
 <html> 
   <head>
     <title>Happy Birthday To You</title> 
+	  <style>
+		  body {background-color: black;}
+	  </style>
   </head>
   <body>
-	<!--This draws the canvas on the webpage -->
     <canvas id="mycanvas"></canvas> 
   </body>
  
@@ -18,7 +20,7 @@ var  hEight = window.innerHeight|| document.documentElement.clientHeight||
 document.body.clientHeight;
   var programCode = function(processingInstance) {
     with (processingInstance) {
-      size(wIdth, hEight); 
+      size(wIdth - 20, hEight - 20); 
       frameRate(30);
         
       String.prototype.anyAtAll = function(arr) {
