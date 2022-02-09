@@ -61,120 +61,11 @@ function Typer(x, y, s, c, words) {
     this.clear = function() {this.lettering = this.start;};
     this.submit = function() {return this.lettering;};
 }
-var files = {
-    'name': 'home',
-    sal: {
-        'name': 'sal',
-        'type': 'file',
-        password: 'KHAN',
-        'desktop': {
-            name: 'desktop',
-            type: 'file',
-            recylceBin: {
-                name: 'recylceBin',
-                type: 'deleted programs'
-            },
-            google: {
-                name: 'Google',
-                type: 'program',
-                dateInstalled: '5/25/2000'
-            },
-            bing: {
-                name: 'Bing',
-                type: 'program',
-                dateInstalled: '5/25/2000'
-            }
-        },
-        'downloads': {
-            name: 'downloads',
-            type: 'file',
-            cuteCatSounds: {
-                name: 'Cute Cat Sounds',
-                type: 'audio',
-                dateDownLoaded: '6/03/2000'
-            },
-            cuteDogImage: {
-                name: 'Cute Dog Image',
-                type: 'image',
-                dateDownLoaded: '7/27/2000'
-            },
-            letterFromOhNoes: {
-                name: 'Letter From Oh Noes',
-                type: 'text',
-                content: 'Hey Sal, I heard about the position open at khanacademy. I feel I am perfectly capable to handle the bugs. Plus I love programming so much, I have a semicolon on my forehead!',
-                dateDownLoaded: '8/20/2001'
-            },
-        },
-    },
-    pamela: {
-        'name': 'pamela',
-        'type': 'file',
-        password: 'var',
-        desktop: {
-            name: 'desktop',
-            type: 'file',
-            recylceBin: {
-                name: 'recylceBin',
-                type: 'deleted programs'
-            },
-            google: {
-                name: 'Google',
-                type: 'program',
-                dateInstalled: '5/25/2000'
-            },
-            firefox: {
-                name: 'Firefox',
-                type: 'program',
-                dateInstalled: '5/25/2000'
-            },
-            khanCode: {
-                name: 'Khan Code Files',
-                type: 'file',
-                html: {
-                    name: 'HTML Khan Code',
-                    type: '.html',
-                },
-                js: {
-                    name: 'Javacript Khan Code',
-                    type: '.js',
-                },
-                dateInstalled: '5/26/2000'
-            }
-        },
-        downloads: {
-            name: 'downloads',
-            type: 'file',
-            codeForOhNoes: {
-                name: 'Code For Oh Noes',
-                type: '.js',
-                dateDownLoaded: '7/06/2007'
-            },
-            tutorialPics: {
-                name: 'Tutorial Pictures',
-                type: 'image',
-                dateDownLoaded: '10/14/2007'
-            },
-            coolProjectCode: {
-                name: 'Cool Project Code',
-                type: '.js',
-                dateDownLoaded: '12/24/2010'
-            },
-            letterFromSal: {
-                name: 'Letter From Sal',
-                type: 'text',
-                content: 'Hey Pamela, I heard our computer system was being comprimised. Please lock down the files and change the passwords. Make sure Winston\'s account is well secure.',
-                dateDownLoaded: '6/03/2011'
-            }
-        },
-    }
-    
-};
 
-var comPath = [files];
 var usernameDone = false;
 var passwordDone = false;
 var t = new Typer(20, height-20, 15, color(0, 255, 0), '');
-var past = ['Welcome to S.H.A.E.L.Y.', 'Otherwise known as The', '', 'S py\'s', 'H andy', 'A wesome', 'E lectronic', 'L ibrary made by', 'Y our friend', '', 'If you\'re a spy then you know what to do.', '', '', ''];
+var past = ['Welcome to Spy Net', '', 'If you\'re a spy then you know what to do.', '', '', ''];
 var commands = ['library', 'Lilian Soren', 'Myles Bartelome', 'Carson Ouckama', 'Shaely Vollmer', 'Hali Bell', 'Elise Pruett', 'Hannah Warth'];
 var names = ['Lilian Soren', 'Myles Bartelome', 'Carson Ouckama', 'Shaely Vollmer', 'Hali Bell', 'Elise Pruett', 'Hannah Warth'];
 
@@ -210,7 +101,7 @@ function() {
     printPast('---------------------||Elise Pruett:||Plays the bongos||Has 2 siblings: No idea||---------------------'); 
 }, 
 function() {
-    printPast('---------------------||Hannah Warth:||Plays the Violon||Has 1 sibling: Kaysia|Notes: Her mom doesn\'t like to wave to people. She has her own spot next to the lunch table.||---------------------'); 
+    printPast('---------------------||Hannah Warth:||Plays the Violon||Notes: Her mom doesn\'t like to wave to people. She has her own spot next to the lunch table.||---------------------'); 
 }];
 
 
@@ -248,8 +139,7 @@ keyPressed = function() {
         if (t.submit() === "my handwriting is better than carson\'s") {
             past.push('correct password');
             past.push('');
-            past.push('You may now type anyone\'s name from your close friends');
-            past.push('to veiw their info');
+            past.push('You may now type anyone\'s name to veiw their info');
             past.push('');
             past.push('type \'library\' to veiw available names');
             past.push('');
